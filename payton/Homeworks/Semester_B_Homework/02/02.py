@@ -116,3 +116,38 @@ plt.axis('equal')
 plt.title("Rectangle Transformations")
 
 plt.show()
+
+# Question 3
+# Interpolation Functions
+
+# 3a – Bilinear Interpolation
+def bilinear_interpolation(alpha, beta, I00, I01, I10, I11):
+
+
+    value = (
+        I00 * (1 - alpha) * (1 - beta) +
+        I01 * alpha * (1 - beta) +
+        I10 * (1 - alpha) * beta +
+        I11 * alpha * beta
+    )
+
+    return value
+
+
+# 3b – Nearest Neighbor
+def nearest_neighbor(alpha, beta, I00, I01, I10, I11):
+    """
+    בוחרת את הפיקסל הקרוב ביותר לנקודה (alpha,beta)
+    """
+
+    if alpha < 0.5 and beta < 0.5:
+        return I00
+
+    elif alpha >= 0.5 and beta < 0.5:
+        return I01
+
+    elif alpha < 0.5 and beta >= 0.5:
+        return I10
+
+    else:
+        return I11
